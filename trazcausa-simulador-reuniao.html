@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TrazCausa · Simulador de viabilidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  body{background:#000;color:#F4F5F6;font-family:Inter,Arial,sans-serif;line-height:1.5;padding:40px 20px}
+  .wrap{max-width:940px;margin:0 auto}
+
+  .mark{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .mark svg{width:44px;height:44px}
+  .mark .wm{font-size:26px;font-weight:800;letter-spacing:-.03em}
+  .mark .wm .g{color:#00D97E}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#00D97E;margin-bottom:10px}
+  h1{font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px}
+  .sub{font-size:15px;color:rgba(244,245,246,.6);max-width:600px;margin-bottom:34px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:26px}
+  .card h2{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,245,246,.5);margin-bottom:20px}
+
+  label{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:#fff}
+  .hint{font-size:12px;color:rgba(244,245,246,.45);font-weight:400;margin-top:5px}
+  .field{margin-bottom:22px}
+  input[type=number]{width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 16px;color:#fff;font-size:17px;font-weight:700;font-family:inherit;outline:none}
+  input[type=number]:focus{border-color:#00D97E;box-shadow:0 0 0 3px rgba(0,217,126,.15)}
+  input[type=text]{width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:13px 16px;color:#fff;font-size:15px;font-family:inherit;outline:none}
+  input::placeholder{color:rgba(255,255,255,.35)}
+
+  .toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .toggle button{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 10px;color:rgba(244,245,246,.7);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:.15s;text-align:center;line-height:1.3}
+  .toggle button small{display:block;font-size:12px;font-weight:600;color:rgba(244,245,246,.45);margin-top:3px}
+  .toggle button.on{background:#00D97E;border-color:#00D97E;color:#000}
+  .toggle button.on small{color:rgba(0,0,0,.6)}
+
+  input[type=range]{width:100%;accent-color:#00D97E;margin-top:6px}
+  .slidehead{display:flex;justify-content:space-between;align-items:baseline}
+  .slideval{font-size:26px;font-weight:800;color:#00D97E;letter-spacing:-.02em}
+
+  .out{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;margin-top:2px}
+  .out:first-of-type{border-top:none;padding-top:0;margin-top:0}
+  .out .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,245,246,.5)}
+  .out .v{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-top:4px}
+  .out .v.green{color:#00D97E}
+  .out .note{font-size:13px;color:rgba(244,245,246,.6);margin-top:6px}
+  .out+.out{margin-top:20px}
+
+  .equil{background:rgba(0,217,126,.08);border:1px solid rgba(0,217,126,.3);border-radius:16px;padding:22px;margin-bottom:20px}
+  .equil .k{color:#00D97E}
+  .equil .big{font-size:46px;font-weight:800;color:#00D97E;letter-spacing:-.03em;line-height:1}
+
+  .disc{font-size:12px;font-style:italic;color:rgba(244,245,246,.42);line-height:1.5;margin-top:22px;border-top:1px solid rgba(255,255,255,.08);padding-top:16px}
+
+  .cta{margin-top:22px;background:linear-gradient(135deg,#062e1f,#04140e);border:1px solid rgba(0,217,126,.25);border-radius:20px;padding:30px}
+  .cta h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+  .cta p{font-size:14px;color:rgba(244,245,246,.65);margin-bottom:20px;max-width:520px}
+  .ctaform{display:grid;grid-template-columns:1fr 1fr auto;gap:12px}
+  @media(max-width:760px){.ctaform{grid-template-columns:1fr}}
+  .ctaform button{background:#00D97E;color:#000;border:none;border-radius:12px;padding:14px 26px;font-weight:800;font-size:15px;font-family:inherit;cursor:pointer;white-space:nowrap}
+  .ctaform button:hover{filter:brightness(1.08)}
+  .badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,217,126,.15);color:#00D97E;padding:4px 10px;border-radius:6px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mark">
+    <svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="16" fill="#00D97E"/><path d="M20 53 L33 53 L44 11 L31 11 Z" fill="#000"/></svg>
+    <div class="wm">Traz<span class="g">Causa</span></div>
+  </div>
+
+  <div class="eyebrow">Simulador de viabilidade</div>
+  <h1>Em quantas causas a operação<br>se paga no seu escritório?</h1>
+  <p class="sub">Coloque o seu ticket médio de honorário e veja o ponto de equilíbrio: quantas causas você precisa fechar no mês para o investimento se pagar. Simulação, não promessa.</p>
+
+  <div class="grid">
+
+    <!-- INPUTS -->
+    <div class="card">
+      <h2>Seu cenário</h2>
+
+      <div class="field">
+        <label>Plano da agência</label>
+        <div class="toggle">
+          <button id="pEss" class="on" onclick="setPlano(3000,this)">Essencial<small>R$ 3.000 · 1 área</small></button>
+          <button id="pMax" onclick="setPlano(5000,this)">Performance Max<small>R$ 5.000 · 2 áreas</small></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Ticket médio de honorário (R$)</label>
+        <input type="number" id="ticket" value="3000" min="0" step="100" oninput="calc()">
+        <div class="hint">Quanto você recebe, em média, por causa fechada.</div>
+      </div>
+
+      <div class="field">
+        <label>Verba de mídia por mês (R$)</label>
+        <input type="number" id="midia" value="2000" min="2000" step="500" oninput="calc()">
+        <div class="hint">Mínimo R$ 2.000. Fica na sua conta de anúncio, você paga direto à plataforma.</div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <div class="slidehead">
+          <label style="margin-bottom:0">Causas que você fecha no mês</label>
+          <span class="slideval" id="casosVal">8</span>
+        </div>
+        <input type="range" id="casos" min="0" max="40" value="8" oninput="calc()">
+        <div class="hint">Arraste para simular seu resultado com diferentes volumes de fechamento.</div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="card">
+      <h2>O que a conta diz</h2>
+
+      <div class="equil">
+        <div class="k">Ponto de equilíbrio</div>
+        <div class="big" id="equil">2 causas</div>
+        <div class="note" id="equilNote">Fechando 2 causas no mês, o investimento se paga. Da 3ª em diante, é margem.</div>
+      </div>
+
+      <div class="out">
+        <div class="k">Desembolso total no mês</div>
+        <div class="v" id="custo">R$ 5.000</div>
+        <div class="note" id="custoNote">R$ 3.000 agência + R$ 2.000 mídia (na sua conta).</div>
+      </div>
+
+      <div class="out">
+        <div class="k">Receita simulada</div>
+        <div class="v green" id="receita">R$ 24.000</div>
+        <div class="note" id="receitaNote">Com 8 causas fechadas no mês.</div>
+      </div>
+
+      <div class="out">
+        <div class="k">Resultado (receita menos investimento)</div>
+        <div class="v" id="lucro">R$ 19.000</div>
+        <div class="note" id="lucroNote">Retorno de 4,8x sobre o investimento no cenário simulado.</div>
+      </div>
+
+      <div class="disc">
+        Simulação de cenários com dados informados por você. Não é promessa de resultado. A prestação de serviço é obrigação de meio, dentro do Provimento 205/2021 da OAB. Resultados variam por escritório, verba, ticket e área de atuação.
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA / captação (protótipo do widget do site) -->
+  <div class="cta">
+    <span class="badge">No site: captura o lead</span>
+    <h3>Quer essa conta no seu caso, com um especialista?</h3>
+    <p>A gente monta a simulação com os números reais do seu escritório e mostra a máquina que caberia na sua operação. Sem compromisso.</p>
+    <form class="ctaform" onsubmit="return fakeSubmit(event)">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="text" placeholder="WhatsApp (00) 00000-0000" required>
+      <button type="submit">Quero minha simulação</button>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  var honorario = 3000;
+
+  function setPlano(v, btn){
+    honorario = v;
+    document.getElementById('pEss').classList.toggle('on', v===3000);
+    document.getElementById('pMax').classList.toggle('on', v===5000);
+    calc();
+  }
+
+  function brl(n){
+    return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  }
+
+  function calc(){
+    var ticket = Math.max(0, Number(document.getElementById('ticket').value)||0);
+    var midia  = Math.max(2000, Number(document.getElementById('midia').value)||2000);
+    var casos  = Number(document.getElementById('casos').value)||0;
+    document.getElementById('casosVal').textContent = casos;
+
+    var custo = honorario + midia;
+    var equil = ticket>0 ? Math.ceil(custo/ticket) : 0;
+    var receita = casos*ticket;
+    var lucro = receita - custo;
+    var mult = custo>0 ? (receita/custo) : 0;
+
+    document.getElementById('custo').textContent = brl(custo);
+    document.getElementById('custoNote').textContent = brl(honorario)+' agência + '+brl(midia)+' mídia (na sua conta).';
+
+    if(ticket>0){
+      document.getElementById('equil').textContent = equil+(equil===1?' causa':' causas');
+      document.getElementById('equilNote').textContent = 'Fechando '+equil+(equil===1?' causa':' causas')+' no mês, o investimento se paga. Da '+(equil+1)+'ª em diante, é margem.';
+    } else {
+      document.getElementById('equil').textContent = 'informe o ticket';
+      document.getElementById('equilNote').textContent = 'Preencha o ticket médio para ver o ponto de equilíbrio.';
+    }
+
+    document.getElementById('receita').textContent = brl(receita);
+    document.getElementById('receitaNote').textContent = 'Com '+casos+(casos===1?' causa fechada':' causas fechadas')+' no mês.';
+
+    document.getElementById('lucro').textContent = brl(lucro);
+    document.getElementById('lucro').classList.toggle('green', lucro>=0);
+    document.getElementById('lucroNote').textContent = lucro>=0
+      ? 'Retorno de '+mult.toFixed(1).replace('.',',')+'x sobre o investimento no cenário simulado.'
+      : 'Nesse cenário o investimento ainda não se pagou. Aumente o volume ou o ticket.';
+  }
+
+  function fakeSubmit(e){
+    e.preventDefault();
+    alert('Protótipo. No site, este formulário envia o lead (nome, WhatsApp, cenário) direto para o RD e o CRM, já com os números da simulação.');
+    return false;
+  }
+
+  calc();
+</script>
+</body>
+</html>
