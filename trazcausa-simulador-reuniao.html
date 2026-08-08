@@ -89,8 +89,8 @@
       <div class="field">
         <label>Plano da agência</label>
         <div class="toggle">
-          <button id="pEss" class="on" onclick="setPlano(3000,this)">Essencial<small>R$ 3.000 · 1 área</small></button>
-          <button id="pMax" onclick="setPlano(5000,this)">Performance Max<small>R$ 5.000 · 2 áreas</small></button>
+          <button id="pEss" class="on" onclick="setPlano(1500,this)">Essencial<small>R$ 1.500 · só Meta</small></button>
+          <button id="pMax" onclick="setPlano(2500,this)">Performance Max<small>R$ 2.500 · Meta + Google + TikTok</small></button>
         </div>
       </div>
 
@@ -102,8 +102,8 @@
 
       <div class="field">
         <label>Verba de mídia por mês (R$)</label>
-        <input type="number" id="midia" value="2000" min="2000" step="500" oninput="calc()">
-        <div class="hint">Mínimo R$ 2.000. Fica na sua conta de anúncio, você paga direto à plataforma.</div>
+        <input type="number" id="midia" value="1000" min="1000" step="500" oninput="calc()">
+        <div class="hint">A partir de R$ 1.000. Fica na sua conta de anúncio, você paga direto à plataforma.</div>
       </div>
 
       <div class="field" style="margin-bottom:0">
@@ -128,8 +128,8 @@
 
       <div class="out">
         <div class="k">Desembolso total no mês</div>
-        <div class="v" id="custo">R$ 5.000</div>
-        <div class="note" id="custoNote">R$ 3.000 agência + R$ 2.000 mídia (na sua conta).</div>
+        <div class="v" id="custo">R$ 2.500</div>
+        <div class="note" id="custoNote">R$ 1.500 agência + R$ 1.000 mídia (na sua conta).</div>
       </div>
 
       <div class="out">
@@ -165,12 +165,12 @@
 </div>
 
 <script>
-  var honorario = 3000;
+  var honorario = 1500;
 
   function setPlano(v, btn){
     honorario = v;
-    document.getElementById('pEss').classList.toggle('on', v===3000);
-    document.getElementById('pMax').classList.toggle('on', v===5000);
+    document.getElementById('pEss').classList.toggle('on', v===1500);
+    document.getElementById('pMax').classList.toggle('on', v===2500);
     calc();
   }
 
@@ -180,7 +180,7 @@
 
   function calc(){
     var ticket = Math.max(0, Number(document.getElementById('ticket').value)||0);
-    var midia  = Math.max(2000, Number(document.getElementById('midia').value)||2000);
+    var midia  = Math.max(1000, Number(document.getElementById('midia').value)||1000);
     var casos  = Number(document.getElementById('casos').value)||0;
     document.getElementById('casosVal').textContent = casos;
 
