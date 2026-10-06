@@ -1,0 +1,241 @@
+<!-- PRE-PEDIDO FEIRA SANTA CRUZ CAMPINAS -->
+<style>
+html,body{background:#005c56!important}
+body{background:linear-gradient(135deg,#005c56,#0e8f88 55%,#20A9A3)!important;background-attachment:fixed!important}
+.bricks--page,.bricks--section,.bricks--row,.bricks--column{background:transparent!important}
+:root{--teal:#20A9A3;--teal-dark:#005c56;--teal-mid:#0e8f88;--ink:#1c2b2a;--line:#e3edec;--bg:#f2f8f7}
+*{box-sizing:border-box;margin:0;padding:0}
+.ppfc-root{font-family:'Segoe UI',Arial,sans-serif;background:none;color:var(--ink);min-height:100vh;padding:16px 10px 120px}
+.wrap{max-width:860px;margin:0 auto}
+.card{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,60,56,.25);overflow:hidden;margin-bottom:16px}
+.head{padding:26px 24px 20px;text-align:center}
+.head img{width:170px;margin-bottom:12px}
+.head h1{color:var(--teal);font-size:24px;line-height:1.25}
+.head p{color:#51706d;margin-top:8px;font-size:14px}
+.sec{padding:18px 20px;border-top:1px solid var(--line)}
+.sec h2{font-size:16px;color:var(--teal-dark);margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+label{font-size:12px;font-weight:600;color:#51706d;display:block;margin-bottom:4px}
+input[type=text],input[type=tel],input[type=email]{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:15px}
+input:focus{outline:none;border-color:var(--teal)}
+.legend{background:var(--teal-dark);color:#fff;border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:13px;line-height:1.6;box-shadow:0 6px 18px rgba(0,60,56,.35)}
+.legend b{color:#aef0ea}
+.search{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#51706d;text-align:left;padding:7px 6px;border-bottom:2px solid var(--line)}
+td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.sel td{background:#eafaf8}
+.preco{white-space:nowrap;font-weight:600}
+.preco small{display:block;font-weight:400;color:#8aa5a2;text-decoration:line-through;font-size:11px}
+.qt{width:64px;padding:8px 6px;border:1.5px solid var(--line);border-radius:8px;font-size:14px;text-align:center}
+.qt:focus{outline:none;border-color:var(--teal)}
+.sub{white-space:nowrap;text-align:right;font-weight:700;color:var(--teal-dark)}
+.tb{display:inline-block;font-size:10px;font-weight:700;border-radius:999px;padding:2px 7px;margin-top:3px}
+.tb1{background:#eef4f3;color:#51706d}
+.tb2{background:#d8f3f0;color:var(--teal-dark)}
+.tb3{background:var(--teal);color:#fff}
+.totalbar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:3px solid var(--teal);box-shadow:0 -8px 24px rgba(0,60,56,.18);padding:12px 16px;z-index:10}
+.totalin{max-width:860px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.tnums{font-size:13px;color:#51706d}
+.tnums b{color:var(--teal-dark);font-size:19px;display:block}
+.btn{background:var(--teal);color:#fff;border:none;border-radius:999px;padding:14px 26px;font-size:15px;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--teal-mid)}
+.hint{font-size:11.5px;color:#8aa5a2;margin-top:6px}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--teal);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.toggle{background:none;border:none;color:var(--teal-dark);font-weight:700;font-size:14px;cursor:pointer;padding:4px 0}
+#err{color:#b00020;font-size:13px;margin-top:8px;display:none}
+</style>
+<div class="ppfc-root">
+<div class="wrap">
+  <div class="card">
+    <div class="head">
+      <img src="https://bmacarini03-ui.github.io/bgcom-emails/medley-logo-verde.png" alt="Medley">
+      <h1>Feira Santa Cruz Campinas</h1>
+      <p>Monte seu pedido com as condi&ccedil;&otilde;es exclusivas da feira. Quanto maior a quantidade de cada item Acelera, maior o desconto daquele item.</p>
+    </div>
+    <div class="sec">
+      <h2>Dados do seu PDV</h2>
+      <form id="form-pdv" name="pre-pedido-feira-campinas">
+      <div class="grid">
+        <div><label>CNPJ *</label><input type="text" id="f-cnpj" name="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00"></div>
+        <div><label>Nome da farm&aacute;cia *</label><input type="text" id="f-farmacia" name="company" required></div>
+        <div><label>Seu nome *</label><input type="text" id="f-nome" name="name" required></div>
+        <div><label>WhatsApp *</label><input type="tel" id="f-whats" name="mobile_phone" required placeholder="(00) 00000-0000"></div>
+        <div><label>E-mail *</label><input type="email" id="f-email" name="email" required placeholder="voce@farmacia.com.br"></div>
+        <div class="grid" style="grid-template-columns:2fr 1fr;gap:10px">
+          <div><label>Cidade *</label><input type="text" id="f-cidade" name="city" required></div>
+          <div><label>Estado *</label><select id="f-uf" name="state" required style="width:100%;padding:11px 8px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;background:#fff">
+            <option value="">UF</option><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+          </select></div>
+        </div>
+      </div>
+      <div id="err"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="legend">
+    Pre&ccedil;o por quantidade de cada item Acelera: <b>1&ndash;10 un &middot; Campanha</b> &nbsp;|&nbsp; <b>11&ndash;20 un &middot; Feira 1.5</b> &nbsp;|&nbsp; <b>21+ un &middot; Feira 3.0</b>
+  </div>
+
+  <div class="card">
+    <div class="sec">
+      <h2>Linha Acelera Medley <span class="badge" id="cnt-ace">0 itens</span></h2>
+      <input class="search" id="s-ace" type="text" placeholder="Buscar produto Acelera...">
+      <table><thead><tr><th>Produto</th><th>Pre&ccedil;o un.</th><th>Qtd</th><th style="text-align:right">Subtotal</th></tr></thead><tbody id="tb-ace"></tbody></table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec">
+      <h2>Linha convencional <span class="badge" id="cnt-conv">0 itens</span></h2>
+      <p class="hint" style="margin:-6px 0 10px">Pre&ccedil;o fixo (sem ST), n&atilde;o muda por quantidade.</p>
+      <input class="search" id="s-conv" type="text" placeholder="Buscar produto da linha convencional...">
+      <button class="toggle" id="tg-conv">Mostrar os 193 itens &#9662;</button>
+      <table style="display:none" id="tbl-conv"><thead><tr><th>Produto</th><th>Pre&ccedil;o un.</th><th>Qtd</th><th style="text-align:right">Subtotal</th></tr></thead><tbody id="tb-conv"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<div id="confirm" style="display:none;position:fixed;inset:0;z-index:20;background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid) 55%,var(--teal));overflow:auto;padding:24px 12px">
+  <div class="card" style="max-width:640px;margin:30px auto">
+    <div class="head">
+      <img src="https://bmacarini03-ui.github.io/bgcom-emails/medley-logo-verde.png" alt="Medley">
+      <h1>Pr&eacute;-pedido recebido! &#10003;</h1>
+      <p>Obrigado, <b id="c-nome"></b>! Registramos o pr&eacute;-pedido da <b id="c-farm"></b>. Nosso time do Conecta PDV vai confirmar as condi&ccedil;&otilde;es e finalizar com voc&ecirc;.</p>
+    </div>
+    <div class="sec">
+      <h2>Resumo do pedido</h2>
+      <div id="c-resumo" style="font-size:13.5px;line-height:1.7;max-height:300px;overflow:auto;border:1.5px solid var(--line);border-radius:10px;padding:12px"></div>
+      <p style="text-align:center;margin-top:18px">
+        <a id="c-whats" class="btn" style="display:inline-block;text-decoration:none" target="_blank">Finalizar pelo WhatsApp agora</a>
+      </p>
+      <p class="hint" style="text-align:center">Voc&ecirc; tamb&eacute;m vai receber o resumo por e-mail.</p>
+    </div>
+  </div>
+</div>
+
+<div class="totalbar">
+  <div class="totalin">
+    <div class="tnums"><span id="resumo">0 itens Acelera &middot; 0 convencionais</span><b id="total">R$ 0,00</b></div>
+    <button class="btn" id="enviar" type="submit" form="form-pdv">Enviar pr&eacute;-pedido pelo WhatsApp</button>
+  </div>
+</div>
+
+<script>
+var DATA={"acelera":[{"ean":"7896422505741","nome":"Aciclovir Creme 50mg/g - Bg c/ 10g","p1":5.15,"p2":4.84,"p3":4.53},{"ean":"7896422511728","nome":"Albendazol Comp Mastig 400mg - 1","p1":1.69,"p2":1.59,"p3":1.48},{"ean":"7891058003258","nome":"Apixabana Comp Rev 2,5mg c/60","p1":69,"p2":66.12,"p3":63.23},{"ean":"7891058003265","nome":"Apixabana Comp Rev 5mg c/60","p1":78.42,"p2":75.53,"p3":72.65},{"ean":"7896422513630","nome":"Azitromicina Di-hidrat Comp Rev 500mg -2","p1":8.93,"p2":8.69,"p3":8.46},{"ean":"7896422514873","nome":"Azitromicina Di-hidrat. Comp Rev 500mg-5","p1":11.6,"p2":11.02,"p3":10.44},{"ean":"7896422532310","nome":"BIMATOPROSTA 0,3MG/3,0ML SOL OFT-MEDLEY","p1":27.22,"p2":26.09,"p3":24.96},{"ean":"7896422507301","nome":"Cetocona+D.Betam+S.Neomi Creme","p1":8.35,"p2":7.98,"p3":7.61},{"ean":"7896422507318","nome":"Cetocona+D.Betam+S.Neomi Pomada","p1":9.11,"p2":8.75,"p3":8.38},{"ean":"7896422506274","nome":"Cetoconazol+Dip.Betametasona Creme","p1":7.98,"p2":7.62,"p3":7.26},{"ean":"7896422516112","nome":"Bissulf Clopidogrel 75mg c/28","p1":35.53,"p2":34.46,"p3":33.4},{"ean":"7896422527514","nome":"CLOR. NARATRIPTANA COMPRIMIDO 2,5MG C/8","p1":13.43,"p2":13.05,"p3":12.68},{"ean":"7896422504812","nome":"Clotrimazol Creme Top 10mg/g","p1":4.56,"p2":4.37,"p3":4.17},{"ean":"7897337716994","nome":"Desloratadina 0,5mg/mL 100mL","p1":15.64,"p2":14.82,"p3":14},{"ean":"7897337717007","nome":"Desloratadina 0,5mg/mL 60mL","p1":7.92,"p2":7.37,"p3":6.82},{"ean":"7891058002602","nome":"Dipirona Monoidratada Comp 1g c/10","p1":5.23,"p2":4.99,"p3":4.75},{"ean":"7896422513173","nome":"DOMPERIDONA SUSP 1MG/ML 100 ML","p1":9.15,"p2":8.72,"p3":8.29},{"ean":"7897337716970","nome":"Etoricoxibe 90mg 7 cpr (C1)","p1":12.08,"p2":11.5,"p3":10.91},{"ean":"7897337716987","nome":"Etoricoxibe 90mg 14 cpr (C1)","p1":23.9,"p2":22.75,"p3":21.59},{"ean":"7896422522687","nome":"Hemif Bisoprolol Comp Rev 10mg c/30","p1":15.62,"p2":14.85,"p3":14.08},{"ean":"7896422522663","nome":"Hemif Bisoprolol Comp Rev 2,5mg c/30","p1":13.98,"p2":13.43,"p3":12.88},{"ean":"7896422522670","nome":"Hemif Bisoprolol Comp Rev 5mg c/30","p1":20.07,"p2":19.4,"p3":18.73},{"ean":"7896422519793","nome":"IBUPROFENO 50 MG/ML SUSP ORAL 30 ML","p1":8.55,"p2":8.34,"p3":8.14},{"ean":"7896422519229","nome":"Nistatina+Oxido Zinco Pom 60g","p1":7.99,"p2":7.67,"p3":7.34},{"ean":"7896422525398","nome":"Oxal Escitalopram 10mg Com Rev 30 (C1)","p1":7.82,"p2":7.19,"p3":6.55},{"ean":"7891058002428","nome":"Oxal Escitalopram 10mg Comp Rev c/60(C1)","p1":12.88,"p2":11.83,"p3":10.78},{"ean":"7896422522632","nome":"Oxal Escitalopram 15mg Comp Rev c/30(C1)","p1":26.39,"p2":24.74,"p3":23.09},{"ean":"7896422525466","nome":"Oxal Escitalopram 20mg Com Rev 30 (C1)","p1":26.24,"p2":24.9,"p3":23.56},{"ean":"7896422501187","nome":"Pregabalina 75mg x 30 Caps (C1)","p1":12.23,"p2":11.05,"p3":9.86},{"ean":"7896422505369","nome":"Prop Clobetasol Creme 0,5mg/g","p1":6.26,"p2":6.02,"p3":5.78},{"ean":"7896422520669","nome":"Simeticona Cap Gel Mole 125mg c/10","p1":3.91,"p2":3.6,"p3":3.28},{"ean":"7891058000936","nome":"SUCCINATO METOPROLOL COMP REV 100MG C/30","p1":28.14,"p2":27.28,"p3":26.42},{"ean":"7891058000943","nome":"SUCCINATO METOPROLOL COMP REV 50MG C/30","p1":19.17,"p2":18.64,"p3":18.12}],"conv":[{"ean":"7896422516877","nome":"ACIDO MEFENAMICO 500MG COM C/ 12","p":7.96},{"ean":"7896422517195","nome":"ACIDO MEFENAMICO 500MG COM C/ 24","p":12.23},{"ean":"7896422515122","nome":"ADAPALENO 1MG/G GEL DERM C/ 30G","p":23.07},{"ean":"7896422524629","nome":"ALBENDAZOL COMP MASTIGAVEL 400MG C/3","p":6.18},{"ean":"7896422516921","nome":"ALOPURINOL 100MG COM C/ 30","p":4.59},{"ean":"7896422516945","nome":"ALOPURINOL 300MG COM C/ 30","p":12.32},{"ean":"7896422516990","nome":"ALPRAZOLAM 0,25MG COM C/ 30","p":4.13},{"ean":"7896422517003","nome":"ALPRAZOLAM 0,5MG COM C/ 30","p":2.79},{"ean":"7896422517034","nome":"ALPRAZOLAM 1MG COM C/ 30","p":7.29},{"ean":"7896422517041","nome":"ALPRAZOLAM 2MG COM C/ 30","p":9.08},{"ean":"7891058003227","nome":"APIXABANA COMP REV 2,5MG C/20","p":27.49},{"ean":"7891058003289","nome":"APIXABANA COMP REV 5MG C/20","p":30.05},{"ean":"7896422506366","nome":"ATENOLOL 100MG COM C/ 30","p":13.9},{"ean":"7896422506342","nome":"ATENOLOL 25MG COM C/ 30","p":1.37},{"ean":"7896422506359","nome":"ATENOLOL 50MG COM C/ 30","p":5.93},{"ean":"7896422520959","nome":"ATORVASTATINA CALCICA 10MG COM REV C/ 30","p":17.46},{"ean":"7896422520966","nome":"ATORVASTATINA CALCICA 20MG COM REV C/ 30","p":15.35},{"ean":"7896422525848","nome":"ATORVASTATINA CALCICA 40MG COM REV C/ 30","p":21.61},{"ean":"7896422514866","nome":"AZITROMICINA 500MG COM REV C/ 3","p":6.15},{"ean":"7896422505802","nome":"BESILATO DE ANLODIPINO 10MG COM C/ 30","p":24.69},{"ean":"7896422505789","nome":"BESILATO DE ANLODIPINO 5MG COM C/ 30","p":3.38},{"ean":"7896422505963","nome":"BROMAZEPAM 3MG COM C/ 30","p":4.88},{"ean":"7896422505970","nome":"BROMAZEPAM 6MG COM C/ 30","p":9.51},{"ean":"7896422507158","nome":"BROMOPRIDA 10MG CAP GEL DURA C/ 20","p":7.56},{"ean":"7896422503709","nome":"CAPTOPRIL 25MG COM C/ 30","p":3.01},{"ean":"7896422519373","nome":"CARVEDILOL 12,5MG COM C/ 30","p":8.95},{"ean":"7896422519403","nome":"CARVEDILOL 25MG COM C/ 30","p":15.4},{"ean":"7896422519342","nome":"CARVEDILOL 6,25MG COM C/ 30","p":8.19},{"ean":"7896422506250","nome":"CETOCONAZOL+DIPROPIONATO BETAMET POM 30G","p":9.69},{"ean":"7896422507295","nome":"CETOPROFENO 100MG COM REV C/ 20","p":21.59},{"ean":"7896422506649","nome":"CETOPROFENO 20MG/ML SOL OR C/ 20ML","p":3.33},{"ean":"7896422507349","nome":"CETOPROFENO 50MG CAP GEL DURA C/ 24","p":8.99},{"ean":"7891058002961","nome":"CETOPROFENO COMP 150MG C/10","p":7},{"ean":"7896422512169","nome":"CICLOPIROX OLAMINA 10MG CREM DERM C/20G","p":10.44},{"ean":"7896422512145","nome":"CICLOPIROX OLAMINA 10MG SOL TOP C/15ML","p":9.52},{"ean":"7896422524827","nome":"CIPROFIBRATO 100MG 4X15 CPR","p":25.13},{"ean":"7891058001612","nome":"CIPROFIBRATO 100MG COM C/ 30","p":13.38},{"ean":"7896422515580","nome":"CITALOPRAM 20MG COM REV C/ 30","p":12.25},{"ean":"7896422525879","nome":"CITRATO DE SILDENAFILA 100MG COM REV C/1","p":7.67},{"ean":"7896422525220","nome":"CITRATO DE SILDENAFILA 100MG COM REV C/2","p":14.4},{"ean":"7896422525237","nome":"CITRATO DE SILDENAFILA 100MG COM REV C/4","p":29.16},{"ean":"7896422525862","nome":"CITRATO DE SILDENAFILA 50MG COM REV C/ 1","p":4.15},{"ean":"7896422525183","nome":"CITRATO DE SILDENAFILA 50MG COM REV C/ 2","p":2.18},{"ean":"7896422525190","nome":"CITRATO DE SILDENAFILA 50MG COM REV C/ 4","p":3.53},{"ean":"7896422525206","nome":"CITRATO DE SILDENAFILA 50MG COM REV C/ 8","p":29.16},{"ean":"7896422524636","nome":"CL AMITRIPTILINA COMP REV 25MG C/30 (C1)","p":3.01},{"ean":"7896422524643","nome":"CL AMITRIPTILINA COMP REV 75MG C/30 (C1)","p":14.27},{"ean":"7896422507103","nome":"CL CIPROFLOXACINO COMP REV 500MG C/14","p":11.33},{"ean":"7896422503600","nome":"CLARITROMICINA 500MG COM REV C/ 10","p":40.03},{"ean":"7896422503617","nome":"CLARITROMICINA 500MG COM REV C/ 14","p":66.5},{"ean":"7896422514644","nome":"CLONAZEPAM 0,5MG COM C/ 30","p":2.67},{"ean":"7896422515016","nome":"CLONAZEPAM 0,5MG COM C/ 60","p":5.06},{"ean":"7896422511865","nome":"CLONAZEPAM 2,5MG/ML SOL OR C/ 20ML","p":4.55},{"ean":"7896422514651","nome":"CLONAZEPAM 2MG COM C/ 30","p":3.95},{"ean":"7896422515023","nome":"CLONAZEPAM 2MG COM C/ 60","p":9.65},{"ean":"7891058001667","nome":"CLOR AMIODARONA COMP 100MG C/ 30","p":12.7},{"ean":"7891058001681","nome":"CLOR AMIODARONA COMP 200MG C/ 30","p":18.48},{"ean":"7891058006105","nome":"CLOR BROMEXINA XAROPE ADULTO","p":8.79},{"ean":"7891058006082","nome":"CLOR BROMEXINA XAROPE PED.","p":7.17},{"ean":"7891058006075","nome":"CLOR DONEPEZIL COMP 10MG C/ 30 (C1)","p":36.39},{"ean":"7891058006068","nome":"CLOR DONEPEZIL COMP 5MG C/ 30 (C1)","p":33.99},{"ean":"7896422520591","nome":"CLOR MEMANTINA COMP REV 10MG (C1) C/ 30","p":16.51},{"ean":"7896422520584","nome":"CLOR MEMANTINA COMP REV 10MG (C1) C/ 60","p":34.02},{"ean":"7891058005825","nome":"CLOR TRAZODONA COMP XR 150MG C/30 (C1)","p":56.43},{"ean":"7891058003784","nome":"CLOR TRAZODONA IR COMP REV 50MG C/60(C1)","p":23.43},{"ean":"7891058003845","nome":"CLOR TRAZODONA IR COMPREV 100MG C/30(C1)","p":24.3},{"ean":"7891058005498","nome":"CLOR. NARATRIPTANA COMP. 2,5MG C/10","p":19.01},{"ean":"7891058005481","nome":"CLOR. NARATRIPTANA COMP. 2,5MG C/4","p":8.36},{"ean":"7896422507097","nome":"CLORIDRATO DE CIPROF. 500MG COMP REV X 7","p":18.82},{"ean":"7896422512961","nome":"CLORIDRATO DE FLUOXET SOL 20MG/ML20-T C1","p":16.61},{"ean":"7896422515894","nome":"CLORIDRATO DE PAROXETINA 20MG COM C/30","p":14.87},{"ean":"7896422515511","nome":"CLORIDRATO DE PROPRANOLOL 10MG COM C/ 30","p":2.62},{"ean":"7896422515535","nome":"CLORIDRATO DE PROPRANOLOL 40MG COM C/ 30","p":4.34},{"ean":"7896422506304","nome":"CLORIDRATO DE SERTRALINA 50MG COM C/30","p":10.59},{"ean":"7896422504713","nome":"CLORIDRATO DE TERBINAFINA 250MG COM C/14","p":36.55},{"ean":"7896422504720","nome":"CLORIDRATO DE TERBINAFINA 250MG COM C/28","p":69.93},{"ean":"7896422519922","nome":"CLORIDRATO DE VENLAFAX. 37,5MG C/30 (C1)","p":16.46},{"ean":"7896422513968","nome":"CLORIDRATO DE VENLAFAX. CAP 150MG 30 C1","p":47.4},{"ean":"7896422513951","nome":"CLORIDRATO DE VENLAFAX. CAP 75MG-30 C1","p":17.04},{"ean":"7896422506427","nome":"CLOTRIMAZOL 10MG CREM VAG C/35G+6 APLIC","p":16.78},{"ean":"7896422506434","nome":"CLOTRIMAZOL 20MG CREM VAGC/20G+3 APLIC","p":18.22},{"ean":"7896422507264","nome":"DICLOFENACO COLESTIRAMINA CAP 70MG - 14","p":11.62},{"ean":"7896422507271","nome":"DICLOFENACO COLESTIRAMINA CAP 70MG - 20","p":14.13},{"ean":"7896422504256","nome":"DICLOFENACO DIETILAMÔNIO GEL CREME","p":7.26},{"ean":"7896422504386","nome":"DICLOFENACO POTASSICO 50MG COM REV C/ 20","p":2.99},{"ean":"7896422504492","nome":"DICLOFENACO SODICO 50MG COM REV C/ 20","p":4.79},{"ean":"7891058002688","nome":"DICLORTRIMETAZIDINA COMP REV XR 35MG C30","p":27.49},{"ean":"7891058002695","nome":"DICLORTRIMETAZIDINA COMP REV XR 35MG C60","p":59.21},{"ean":"7896422507059","nome":"DIPIRONA MONOIDRATADA 500MG COM C/ 30","p":6.65},{"ean":"7896422506229","nome":"DIPIRONA MONOIDRATADA 500MG SOL C/10ML","p":3.41},{"ean":"7896422506236","nome":"DIPIRONA MONOIDRATADA 500MG SOL C/20ML","p":5.01},{"ean":"7891058005726","nome":"DIPIRONA MONOIDRATADA COMP 500MG C/100","p":18.74},{"ean":"7896422506243","nome":"DIPIRONA SOD SOL ORAL 50MG/ML","p":7.14},{"ean":"7896206425869","nome":"ESOMEPRAZOL MAG COMP REV 20 MG C/28 - AZ","p":29.02},{"ean":"7896206425906","nome":"ESOMEPRAZOL MAG COMP REV 40 MG C/28 - AZ","p":47.82},{"ean":"7891058005610","nome":"FEXOFENADINA 120MG 10 CPR","p":9.52},{"ean":"7891058005627","nome":"FEXOFENADINA 180MG 10 CPR","p":14.06},{"ean":"7896422505062","nome":"FLUCONAZOL 150MG CAP GEL DURA C/ 1","p":5.37},{"ean":"7896422505079","nome":"FLUCONAZOL 150MG CAP GEL DURA C/ 2","p":5.95},{"ean":"7896422515344","nome":"FUROATO DE MOMETASONA 1MG CREM DERMC/20G","p":13.34},{"ean":"7896422515368","nome":"FUROATO DE MOMETASONA 1MG POM DERM C/20G","p":16.11},{"ean":"7896422508209","nome":"GENFIBROZILA 600MG COM REV C/ 30","p":55.25},{"ean":"7896422508216","nome":"GENFIBROZILA 900MG COM REV C/ 15","p":33.26},{"ean":"7896422522571","nome":"GLIBENCLAMIDA 5MG COM C/ 30","p":8.04},{"ean":"7896422500500","nome":"HEMIFUM.QUETIAPINA COMP REV 25MGC/30(C1)","p":11.49},{"ean":"7896422500531","nome":"HEMIFUM.QUETIAPINA COMPREV 100MGC/30(C1)","p":56.52},{"ean":"7896422500562","nome":"HEMIFUM.QUETIAPINA COMPREV 200MGC/30(C1)","p":90.81},{"ean":"7891058002657","nome":"HIDROCLOROTIAZIDA 25MG COM C/ 30","p":1.62},{"ean":"7891058002664","nome":"HIDROCLOROTIAZIDA 50MG COM C/ 20","p":2.59},{"ean":"7896422519830","nome":"IBUPROFENO 100MG/ML SUS OR C/ 20ML","p":6.18},{"ean":"7891058002725","nome":"IBUPROFENO CAPS GEL MOLE 400MG C/10","p":9.44},{"ean":"7896422546782","nome":"LAMOTRIGINA 100MG COM C/ 30","p":48.93},{"ean":"7896422546775","nome":"LAMOTRIGINA 25MG COM C/ 30","p":11.99},{"ean":"7896422546751","nome":"LAMOTRIGINA 50MG COM C/ 30","p":18.55},{"ean":"7896422505253","nome":"LANSOPRAZOL CAPSULAS 15MG C/28","p":17.03},{"ean":"7896422507431","nome":"LANSOPRAZOL CAPSULAS 30MG C/28","p":34.07},{"ean":"7896422506755","nome":"LISINOPRIL 10MG COM C/ 30","p":18.53},{"ean":"7896422506779","nome":"LISINOPRIL 20MG COM C/ 30","p":45.52},{"ean":"7896422506731","nome":"LISINOPRIL 5MG COM C/ 30","p":16.47},{"ean":"7896422516853","nome":"LOSARTANA POTASSICA 100MG COM REV C/ 30","p":27.94},{"ean":"7896422507738","nome":"LOSARTANA POTASSICA 50MG COM REV C/ 30","p":3.12},{"ean":"7896422517621","nome":"MALEATO DE MIDAZOLAM 15MG COM REV C/ 30","p":49.13},{"ean":"7896422505666","nome":"MELOXICAM 15MG COM C/ 10","p":5.78},{"ean":"7896422505659","nome":"MELOXICAM 7,5MG COM C/ 10","p":5.29},{"ean":"7896422506076","nome":"MIRTAZAPINA COMP. ORODISP 15MG C/30 (C1)","p":22.96},{"ean":"7896422506069","nome":"MIRTAZAPINA COMP. ORODISP 30MG C/30 (C1)","p":52.97},{"ean":"7896422504577","nome":"NISTATINA CREME VAGINAL 60G C/14","p":9.52},{"ean":"7896422507400","nome":"NORFLOXACINO 400MG COM REV C/ 14","p":14.16},{"ean":"7896422507394","nome":"NORFLOXACINO 400MG COM REV C/ 6","p":10.02},{"ean":"7891058003159","nome":"OLMESARTANA MEDOX COMP REV 20MG C/30","p":17.72},{"ean":"7891058003166","nome":"OLMESARTANA MEDOX COMP REV 40MG C/30","p":22.52},{"ean":"7896422506533","nome":"OMEPRAZOL 10MG CAP GEL DURA LIB C/ 14","p":8.84},{"ean":"7896422504362","nome":"OMEPRAZOL 20MG CAP GEL DURA LIB C/ 14","p":13.24},{"ean":"7896422504379","nome":"OMEPRAZOL 20MG CAP GEL DURA LIB C/ 28","p":15},{"ean":"7896422517843","nome":"OMEPRAZOL 20MG CAP GEL DURA LIB C/ 42","p":24.69},{"ean":"7896422504355","nome":"OMEPRAZOL 20MG CAP GEL DURA LIB C/ 7","p":8.58},{"ean":"7896422504614","nome":"OMEPRAZOL 40MG CAP GEL DURA LIB C/ 7","p":15.09},{"ean":"7891058001964","nome":"ONDANSETRONA COMP 4MG C/10","p":8.43},{"ean":"7891058001971","nome":"ONDANSETRONA COMP 8MG C/10","p":17.72},{"ean":"7896422511902","nome":"OXCARBAZEPINA 300MG COM REV C/ 30","p":26.77},{"ean":"7896422511940","nome":"OXCARBAZEPINA 600MG COM REV C/ 30","p":51.02},{"ean":"7896422524766","nome":"OXCARBAZEPINA COMP REV 300MG C/60 (C1)","p":46.87},{"ean":"7896422524773","nome":"OXCARBAZEPINA COMP REV 600MG C/60 (C1)","p":92.01},{"ean":"7891058005931","nome":"PANTOPRAZOL COMP REV LIB RET 20 MG C/14","p":10.99},{"ean":"7891058005955","nome":"PANTOPRAZOL COMP REV LIB RET 20 MG C/28","p":7.83},{"ean":"7891058005962","nome":"PANTOPRAZOL COMP REV LIB RET 40 MG C/14","p":21.49},{"ean":"7891058005979","nome":"PANTOPRAZOL COMP REV LIB RET 40 MG C/28","p":8.78},{"ean":"7891058005986","nome":"PANTOPRAZOL COMP REV LIB RET 40 MG C/42","p":38.51},{"ean":"7891058005924","nome":"PARACETAMOL 200MG/ML SOL OR C/ 15ML","p":4.39},{"ean":"7891058005450","nome":"PARACETAMOL 750MG COM REV C/ 20","p":8.75},{"ean":"7896422519151","nome":"PRAVASTATINA SODICA 10MG COM C/ 30","p":46.44},{"ean":"7896422519168","nome":"PRAVASTATINA SODICA 20MG COM C/ 30","p":68.55},{"ean":"7896422519175","nome":"PRAVASTATINA SODICA 40MG COM C/ 30","p":129.75},{"ean":"7891058005672","nome":"PREDNISONA 20MG COM C/ 30","p":16.66},{"ean":"7891058005665","nome":"PREDNISONA COMP 20MG C/ 10","p":5.79},{"ean":"7891058005658","nome":"PREDNISONA COMP 5MG C/20","p":4.13},{"ean":"7896422501330","nome":"PREGABALINA 150 MG CAP GEL DURA C/ 30","p":21.38},{"ean":"7896422527026","nome":"PREGABALINA CAPS GEL DURA 50MG C/30 (C1)","p":20.12},{"ean":"7896422518673","nome":"RAMIPRIL 5MG COM C/ 30","p":32.4},{"ean":"7896422518987","nome":"RAMIPRIL 5MG COM C/ 60 (EMB HOSP)","p":47.74},{"ean":"7896422520980","nome":"RIFAMICINA SV SODICA 10MG/ML SPRAY 20ML","p":9.85},{"ean":"7896422527446","nome":"RISPERIDONA COMP REV. 1MG C/30 (C1)","p":11.55},{"ean":"7896422527453","nome":"RISPERIDONA COMP REV. 2MG C/30 (C1)","p":12.33},{"ean":"7896422527460","nome":"RISPERIDONA COMP REV. 3MG C/30 (C1)","p":11.2},{"ean":"7891058002046","nome":"RIVAROXABANA COMP REV 10MG C/ 10","p":13.24},{"ean":"7891058002077","nome":"RIVAROXABANA COMP REV 10MG C/ 30","p":39.73},{"ean":"7891058002145","nome":"RIVAROXABANA COMP REV 15MG C/ 30","p":37.24},{"ean":"7891058002152","nome":"RIVAROXABANA COMP REV 20MG C/ 30","p":36.7},{"ean":"7896422528580","nome":"ROSUVASTATINA CALCICA 10MG COM REV C/ 30","p":9.11},{"ean":"7896422528627","nome":"ROSUVASTATINA CALCICA 20MG COM REV C/ 30","p":15.11},{"ean":"7896422524667","nome":"ROSUVASTATINA CALCICA COMP REV 10MG-60","p":17.76},{"ean":"7896422524650","nome":"ROSUVASTATINA CALCICA COMP REV 20MG-60","p":30.2},{"ean":"7891058002381","nome":"ROSUVASTATINA CALCICA COMP REV 5MG C/30","p":14.43},{"ean":"7891058002398","nome":"ROSUVASTATINA CALCICA COMP REV 5MG C/60","p":32.86},{"ean":"7896422505680","nome":"SECNIDAZOL 1000MG COM REV C/ 2","p":5.58},{"ean":"7896422505697","nome":"SECNIDAZOL 1000MG COM REV C/ 4","p":9.94},{"ean":"7891058005641","nome":"SIMETICONA CAP GEL MOLE 125MG C/ 20","p":8.95},{"ean":"7896422522823","nome":"SIMETICONA COMPRIMIDO 40MG C/20","p":4.88},{"ean":"7896422504744","nome":"SIMETICONA GTS 75MG/ML 15ML","p":3.99},{"ean":"7896422504010","nome":"SUC DESVENLAFAXINA COMP REV 100MG-30","p":34.67},{"ean":"7896422503990","nome":"SUC DESVENLAFAXINA COMP REV 50MG-30","p":29.91},{"ean":"7891058003982","nome":"SUC SOLIFENACINA COMP REV 10MG C/ 30","p":64.35},{"ean":"7891058003999","nome":"SUC SOLIFENACINA COMP REV 5MG C/ 30","p":52.58},{"ean":"7891058000950","nome":"SUCCINATO METOPROLOL COMP REV 25MG C/30","p":17.6},{"ean":"7896422527491","nome":"SULFATO DE HIDROXICLOROQUINA 400MG 30CPR","p":50.3},{"ean":"7896422504478","nome":"SULFATO DE NEOMICINA+BACITRACINA POM 50G","p":10.68},{"ean":"7896422504454","nome":"SULFATO DE NEOMICINA+BACITRACINA POM-15G","p":4.93},{"ean":"7896422501668","nome":"TADALAFILA 20MG COM REV C/ 1","p":5.64},{"ean":"7896422501675","nome":"TADALAFILA 20MG COM REV C/ 2","p":7.57},{"ean":"7896422501682","nome":"TADALAFILA 20MG COM REV C/ 4","p":11.56},{"ean":"7896422501651","nome":"TADALAFILA 5MG COM REV C/ 30","p":24.3},{"ean":"7896422533713","nome":"TRAVOPROSTA 0,04MG/ML SOL OFT C/ 2,5ML","p":23.64},{"ean":"7896422505338","nome":"VALERATO DE BETAMETASONA POMADA 30G","p":13.22}]};
+var WHATS="5511939046901";
+var fmt=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})};
+var qa={},qc={};
+
+function tierOf(q){return q>20?3:q>10?2:1}
+function priceOf(it,q){var t=tierOf(q);return t===3?it.p3:t===2?it.p2:it.p1}
+var TNAME={1:'Campanha',2:'Feira 1.5',3:'Feira 3.0'};
+
+function rowAce(it){
+  return '<tr data-ean="'+it.ean+'"><td>'+it.nome+'<div class="hint">EAN '+it.ean+'</div></td>'+
+  '<td class="preco" id="p-'+it.ean+'">'+fmt(it.p1)+'<span class="tb tb1" id="t-'+it.ean+'">Campanha</span></td>'+
+  '<td><input class="qt" type="number" min="0" inputmode="numeric" data-ean="'+it.ean+'" data-k="a"></td>'+
+  '<td class="sub" id="sa-'+it.ean+'"></td></tr>';
+}
+function rowConv(it){
+  return '<tr data-ean="'+it.ean+'"><td>'+it.nome+'<div class="hint">EAN '+it.ean+'</div></td>'+
+  '<td class="preco">'+fmt(it.p)+'</td>'+
+  '<td><input class="qt" type="number" min="0" inputmode="numeric" data-ean="'+it.ean+'" data-k="c"></td>'+
+  '<td class="sub" id="sc-'+it.ean+'"></td></tr>';
+}
+document.getElementById('tb-ace').innerHTML=DATA.acelera.map(rowAce).join('');
+document.getElementById('tb-conv').innerHTML=DATA.conv.map(rowConv).join('');
+
+function recalc(){
+  var na=0,nc=0,tot=0;
+  DATA.acelera.forEach(function(it){
+    var q=qa[it.ean]||0,t=tierOf(q),p=priceOf(it,q);
+    document.getElementById('p-'+it.ean).innerHTML=fmt(p)+(t>1?'<small>'+fmt(it.p1)+'</small>':'')+
+      '<span class="tb tb'+t+'">'+TNAME[t]+'</span>';
+    var sub=q*p;tot+=sub;if(q>0)na++;
+    var el=document.getElementById('sa-'+it.ean);el.textContent=q>0?fmt(sub):'';
+    var tr=el.closest('tr');if(q>0)tr.classList.add('sel');else tr.classList.remove('sel');
+  });
+  DATA.conv.forEach(function(it){
+    var q=qc[it.ean]||0,sub=q*it.p;tot+=sub;if(q>0)nc++;
+    var el=document.getElementById('sc-'+it.ean);el.textContent=q>0?fmt(sub):'';
+    var tr=el.closest('tr');if(q>0)tr.classList.add('sel');else tr.classList.remove('sel');
+  });
+  document.getElementById('cnt-ace').textContent=na+' itens';
+  document.getElementById('cnt-conv').textContent=nc+' itens';
+  document.getElementById('resumo').textContent=na+' itens Acelera · '+nc+' convencionais';
+  document.getElementById('total').textContent=fmt(tot);
+  return {na:na,nc:nc,tot:tot};
+}
+
+document.body.addEventListener('input',function(e){
+  if(!e.target.classList.contains('qt'))return;
+  var q=Math.max(0,parseInt(e.target.value,10)||0);
+  if(e.target.dataset.k==='a')qa[e.target.dataset.ean]=q;else qc[e.target.dataset.ean]=q;
+  recalc();
+});
+
+function filtra(inp,tbody){
+  var s=inp.value.toLowerCase();
+  tbody.querySelectorAll('tr').forEach(function(tr){
+    tr.style.display=tr.textContent.toLowerCase().indexOf(s)>-1?'':'none';
+  });
+}
+document.getElementById('s-ace').addEventListener('input',function(){filtra(this,document.getElementById('tb-ace'))});
+document.getElementById('s-conv').addEventListener('input',function(){
+  var tbl=document.getElementById('tbl-conv');tbl.style.display='table';
+  filtra(this,document.getElementById('tb-conv'));
+});
+document.getElementById('tg-conv').addEventListener('click',function(){
+  var tbl=document.getElementById('tbl-conv');
+  var open=tbl.style.display!=='none';
+  tbl.style.display=open?'none':'table';
+  this.innerHTML=open?'Mostrar os 193 itens ▾':'Esconder lista ▴';
+});
+
+// Dentro da LP do RD o código de monitoramento captura o submit deste <form> sozinho; sem API.
+function pedidoLinhas(r){
+  var L=[];
+  if(r.na){L.push('*Linha Acelera:*');
+    DATA.acelera.forEach(function(it){var q=qa[it.ean]||0;if(q>0)L.push('• '+q+'x '+it.nome+' — '+fmt(priceOf(it,q))+' un · tabela '+TNAME[tierOf(q)]+' (EAN '+it.ean+')')});L.push('')}
+  if(r.nc){L.push('*Linha convencional:*');
+    DATA.conv.forEach(function(it){var q=qc[it.ean]||0;if(q>0)L.push('• '+q+'x '+it.nome+' — '+fmt(it.p)+' un (EAN '+it.ean+')')});L.push('')}
+  L.push('*Total estimado: '+fmt(r.tot)+'*');
+  return L;
+}
+
+document.getElementById('form-pdv').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var d={
+    cnpj:document.getElementById('f-cnpj').value.trim(),
+    farm:document.getElementById('f-farmacia').value.trim(),
+    nome:document.getElementById('f-nome').value.trim(),
+    whats:document.getElementById('f-whats').value.trim(),
+    email:document.getElementById('f-email').value.trim(),
+    cidade:document.getElementById('f-cidade').value.trim(),
+    uf:document.getElementById('f-uf').value
+  };
+  var err=document.getElementById('err');
+  if(!d.cnpj||!d.farm||!d.nome||!d.whats||!d.email||!d.cidade||!d.uf){
+    err.style.display='block';err.textContent='Preencha todos os campos (CNPJ, farmácia, nome, WhatsApp, e-mail, cidade e estado).';
+    window.scrollTo({top:0,behavior:'smooth'});return}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)){
+    err.style.display='block';err.textContent='Confira o e-mail digitado.';window.scrollTo({top:0,behavior:'smooth'});return}
+  err.style.display='none';
+  var r=recalc();
+  if(r.na+r.nc===0){err.style.display='block';err.textContent='Adicione pelo menos um item ao pedido.';return}
+
+  var L=['*PRÉ-PEDIDO · Feira Santa Cruz Campinas*','',
+    'Farmácia: '+d.farm,'CNPJ: '+d.cnpj,'Contato: '+d.nome+' · '+d.whats,''].concat(pedidoLinhas(r));
+  document.getElementById('c-nome').textContent=d.nome.split(' ')[0];
+  document.getElementById('c-farm').textContent=d.farm;
+  document.getElementById('c-resumo').innerHTML=pedidoLinhas(r).map(function(l){return l.replace(/\*/g,'')}).join('<br>');
+  document.getElementById('c-whats').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(L.join('\n'));
+  document.getElementById('confirm').style.display='block';
+  window.scrollTo(0,0);
+});
+recalc();
+</script>
+</div>
