@@ -6,7 +6,8 @@
 
 
 #atl-lp, #atl-lp *{box-sizing:border-box;margin:0;padding:0}
-#atl-lp{background:#F6F1EA;color:#3B3430;font-family:'Public Sans', Arial, sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+#atl-lp{background:#F6F1EA;color:#3B3430;font-family:'Public Sans', Arial, sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums}
+#atl-lp h1, #atl-lp h2, #atl-lp h3, #atl-lp b, #atl-lp .n{font-variant-numeric:lining-nums}
 #atl-lp img{display:block;max-width:100%}
 #atl-lp a{color:inherit}
 #atl-lp .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
@@ -505,6 +506,8 @@ html{scroll-behavior:smooth}
     <div class="ficha" id="ficha">
       <form id="atl-form" name="lp-hotelaria-colecao-hotel-a" action="#ficha" method="post" target="atl-retorno">
         <input type="hidden" name="identificador" value="lp-hotelaria-colecao-hotel-a">
+        <input type="hidden" name="ramo_atividade" value="Hotelaria">
+        <input type="hidden" name="regiao" id="f-regiao" value="">
         <h3>Seus dados</h3>
         <p class="sub">Leva menos de um minuto.</p>
         <div class="campos">
@@ -525,7 +528,7 @@ html{scroll-behavior:smooth}
             </select></div>
           <div class="campo"><label for="f-qtd">Quartos ou leitos <small>(opcional)</small></label>
             <select id="f-qtd" name="quantidade_quartos_leitos">
-              <option value="">Selecione</option><option>Até 20</option><option>21 a 50</option><option>51 a 100</option><option>101 a 200</option><option>Mais de 200</option>
+              <option value="">Selecione</option><option>Até 30</option><option>31 a 100</option><option>101 a 300</option><option>Mais de 300</option>
             </select></div>
           <div class="campo cheio"><span class="rot">Produtos de interesse</span>
             <div class="opcoes" id="f-produtos">
@@ -608,6 +611,8 @@ html{scroll-behavior:smooth}
     prodTxt.value = v.join(', ');
   }
   caixas.forEach(function(c){ c.addEventListener('change', atualizaProdutos); });
+  var REG = {SC:'Sul',PR:'Sul',RS:'Sul',SP:'Sudeste',RJ:'Sudeste',MG:'Sudeste',ES:'Sudeste',GO:'Centro-Oeste',MT:'Centro-Oeste',MS:'Centro-Oeste',DF:'Centro-Oeste',AM:'Norte',PA:'Norte',AC:'Norte',RO:'Norte',RR:'Norte',AP:'Norte',TO:'Norte'};
+  document.getElementById('f-uf').addEventListener('change', function(){ document.getElementById('f-regiao').value = REG[this.value] || (this.value ? 'Nordeste' : ''); });
 
   function mensagem(){
     var g = function(id){ var e = document.getElementById(id); return e ? e.value.trim() : ''; };
