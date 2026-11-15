@@ -67,6 +67,24 @@
   @media(max-width:760px){.ctaform{grid-template-columns:1fr}}
   .ctaform button{background:#00D97E;color:#000;border:none;border-radius:12px;padding:14px 26px;font-weight:800;font-size:15px;font-family:inherit;cursor:pointer;white-space:nowrap}
   .ctaform button:hover{filter:brightness(1.08)}
+  .extras{margin-top:22px}
+  .extras .lead2{font-size:14px;color:rgba(244,245,246,.6);margin:-8px 0 18px;max-width:640px}
+  .xgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:760px){.xgrid{grid-template-columns:1fr}}
+  .x{display:block;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px;cursor:pointer;transition:.15s}
+  .x.on{border-color:#00D97E;background:rgba(0,217,126,.08)}
+  .x .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .x input[type=checkbox]{width:18px;height:18px;accent-color:#00D97E;flex:none}
+  .x .nm{font-size:15px;font-weight:800;color:#fff}
+  .x .pr{font-size:13px;font-weight:800;color:#00D97E;margin-bottom:6px}
+  .x .ds{font-size:13px;color:rgba(244,245,246,.62);line-height:1.5}
+  .x .users{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:rgba(244,245,246,.7)}
+  .x .users input{width:74px;padding:8px 10px;font-size:14px}
+  .xsum{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media(max-width:760px){.xsum{grid-template-columns:1fr}}
+  .xsum > div{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px}
+  .xsum .k{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,245,246,.5)}
+  .xsum .v{font-size:22px;font-weight:800;margin-top:2px}
   .badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,217,126,.15);color:#00D97E;padding:4px 10px;border-radius:6px;margin-bottom:14px}
 </style>
 </head>
@@ -153,6 +171,34 @@
     </div>
   </div>
 
+  <!-- SERVIÇOS COMPLEMENTARES -->
+  <div class="card extras">
+    <h2>Serviços complementares</h2>
+    <p class="lead2">Contratados à parte, em qualquer plano. Marque para somar na conta acima.</p>
+    <div class="xgrid">
+      <label class="x" id="xLP">
+        <div class="top"><input type="checkbox" id="cLP" onchange="calc()"><span class="nm">Landing page de captação</span></div>
+        <div class="pr">R$ 500 · pagamento único</div>
+        <div class="ds">Você escolhe um serviço e recebe a página de qualificação da campanha. Já inclusa no Essencial e no Performance Max.</div>
+      </label>
+      <label class="x" id="xMent">
+        <div class="top"><input type="checkbox" id="cMent" onchange="calc()"><span class="nm">Mentoria de atendimento</span></div>
+        <div class="pr">R$ 500 · pagamento único</div>
+        <div class="ds">4 encontros online em turma, com apostila, roteiros e playbooks. O time sai com roteiro, cadência e meta de tempo de resposta.</div>
+      </label>
+      <label class="x" id="xCRM">
+        <div class="top"><input type="checkbox" id="cCRM" onchange="calc()"><span class="nm">CRM TrazCausa</span></div>
+        <div class="pr">R$ 100 por usuário · por mês</div>
+        <div class="ds">O lead do formulário e da landing page entra sozinho, o responsável segue a cadência e o dashboard fecha o mês.</div>
+        <div class="users">Usuários <input type="number" id="crmUsers" value="2" min="1" step="1" oninput="calc()" onclick="event.preventDefault()"></div>
+      </label>
+    </div>
+    <div class="xsum">
+      <div><div class="k">Investimento único de entrada</div><div class="v" id="unico">R$ 0</div></div>
+      <div><div class="k">Somado ao desembolso mensal</div><div class="v" id="extraMes">R$ 0</div></div>
+    </div>
+  </div>
+
   <!-- CTA / captação (protótipo do widget do site) -->
   <div class="cta">
     <span class="badge">No site: captura o lead</span>
@@ -197,14 +243,26 @@
     var casos  = Number(document.getElementById('casos').value)||0;
     document.getElementById('casosVal').textContent = casos;
 
-    var custo = honorario + midia;
+    var lpOn = document.getElementById('cLP').checked;
+    var mentOn = document.getElementById('cMent').checked;
+    var crmOn = document.getElementById('cCRM').checked;
+    var crmUsers = Math.max(1, Math.floor(Number(document.getElementById('crmUsers').value)||1));
+    var unico = (lpOn?500:0) + (mentOn?500:0);
+    var crmMes = crmOn ? crmUsers*100 : 0;
+    document.getElementById('xLP').classList.toggle('on', lpOn);
+    document.getElementById('xMent').classList.toggle('on', mentOn);
+    document.getElementById('xCRM').classList.toggle('on', crmOn);
+    document.getElementById('unico').textContent = brl(unico);
+    document.getElementById('extraMes').textContent = brl(crmMes);
+
+    var custo = honorario + midia + crmMes;
     var equil = ticket>0 ? Math.ceil(custo/ticket) : 0;
     var receita = casos*ticket;
     var lucro = receita - custo;
     var mult = custo>0 ? (receita/custo) : 0;
 
     document.getElementById('custo').textContent = brl(custo);
-    document.getElementById('custoNote').textContent = brl(honorario)+' agência + '+brl(midia)+' mídia (na sua conta).';
+    document.getElementById('custoNote').textContent = brl(honorario)+' agência + '+brl(midia)+' mídia (na sua conta)'+(crmMes?' + '+brl(crmMes)+' CRM':'')+'.'+(unico?' Mais '+brl(unico)+' de entrada, uma vez só.':'');
 
     if(ticket>0){
       document.getElementById('equil').textContent = equil+(equil===1?' causa':' causas');
