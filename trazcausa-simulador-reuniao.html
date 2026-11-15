@@ -35,6 +35,8 @@
   input::placeholder{color:rgba(255,255,255,.35)}
 
   .toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .toggle.t3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:760px){.toggle.t3{grid-template-columns:1fr}}
   .toggle button{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 10px;color:rgba(244,245,246,.7);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:.15s;text-align:center;line-height:1.3}
   .toggle button small{display:block;font-size:12px;font-weight:600;color:rgba(244,245,246,.45);margin-top:3px}
   .toggle button.on{background:#00D97E;border-color:#00D97E;color:#000}
@@ -88,9 +90,10 @@
 
       <div class="field">
         <label>Plano da agência</label>
-        <div class="toggle">
-          <button id="pEss" class="on" onclick="setPlano(1500,this)">Essencial<small>R$ 1.500 · só Meta</small></button>
-          <button id="pMax" onclick="setPlano(2500,this)">Performance Max<small>R$ 2.500 · Meta + Google + TikTok</small></button>
+        <div class="toggle t3">
+          <button id="p3C" class="on" onclick="setPlano(750,this)">Plano 3C<small>R$ 750 · 2 campanhas · Meta</small></button>
+          <button id="pEss" onclick="setPlano(1500,this)">Essencial<small>R$ 1.500 · 3 campanhas · Google ou Meta</small></button>
+          <button id="pMax" onclick="setPlano(2500,this)">Performance Max<small>R$ 2.500 · 4 campanhas · Meta + Google + TikTok</small></button>
         </div>
       </div>
 
@@ -102,8 +105,8 @@
 
       <div class="field">
         <label>Verba de mídia por mês (R$)</label>
-        <input type="number" id="midia" value="1000" min="1000" step="500" oninput="calc()">
-        <div class="hint">A partir de R$ 1.000. Fica na sua conta de anúncio, você paga direto à plataforma.</div>
+        <input type="number" id="midia" value="500" min="500" step="500" oninput="calc()">
+        <div class="hint" id="midiaHint">A partir de R$ 500 no Plano 3C. Fica na sua conta de anúncio, você paga direto à plataforma.</div>
       </div>
 
       <div class="field" style="margin-bottom:0">
@@ -122,14 +125,14 @@
 
       <div class="equil">
         <div class="k">Ponto de equilíbrio</div>
-        <div class="big" id="equil">2 causas</div>
-        <div class="note" id="equilNote">Fechando 2 causas no mês, o investimento se paga. Da 3ª em diante, é margem.</div>
+        <div class="big" id="equil">1 causa</div>
+        <div class="note" id="equilNote">Fechando 1 causa no mês, o investimento se paga. Da 2ª em diante, é margem.</div>
       </div>
 
       <div class="out">
         <div class="k">Desembolso total no mês</div>
-        <div class="v" id="custo">R$ 2.500</div>
-        <div class="note" id="custoNote">R$ 1.500 agência + R$ 1.000 mídia (na sua conta).</div>
+        <div class="v" id="custo">R$ 1.250</div>
+        <div class="note" id="custoNote">R$ 750 agência + R$ 500 mídia (na sua conta).</div>
       </div>
 
       <div class="out">
@@ -140,8 +143,8 @@
 
       <div class="out">
         <div class="k">Resultado (receita menos investimento)</div>
-        <div class="v" id="lucro">R$ 19.000</div>
-        <div class="note" id="lucroNote">Retorno de 4,8x sobre o investimento no cenário simulado.</div>
+        <div class="v" id="lucro">R$ 22.750</div>
+        <div class="note" id="lucroNote">Retorno de 19,2x sobre o investimento no cenário simulado.</div>
       </div>
 
       <div class="disc">
@@ -165,12 +168,22 @@
 </div>
 
 <script>
-  var honorario = 1500;
+  var honorario = 750;
+
+  // Verba mínima de mídia por plano: R$ 500 no Plano 3C, R$ 1.000 nos demais.
+  function midiaMin(){ return honorario===750 ? 500 : 1000; }
 
   function setPlano(v, btn){
     honorario = v;
+    document.getElementById('p3C').classList.toggle('on', v===750);
     document.getElementById('pEss').classList.toggle('on', v===1500);
     document.getElementById('pMax').classList.toggle('on', v===2500);
+    var campo = document.getElementById('midia');
+    campo.min = midiaMin();
+    if((Number(campo.value)||0) < midiaMin()) campo.value = midiaMin();
+    document.getElementById('midiaHint').textContent = (v===750
+      ? 'A partir de R$ 500 no Plano 3C. Com R$ 500, as campanhas rodam uma por vez.'
+      : 'A partir de R$ 1.000 neste plano.') + ' Fica na sua conta de anúncio, você paga direto à plataforma.';
     calc();
   }
 
@@ -180,7 +193,7 @@
 
   function calc(){
     var ticket = Math.max(0, Number(document.getElementById('ticket').value)||0);
-    var midia  = Math.max(1000, Number(document.getElementById('midia').value)||1000);
+    var midia  = Math.max(midiaMin(), Number(document.getElementById('midia').value)||midiaMin());
     var casos  = Number(document.getElementById('casos').value)||0;
     document.getElementById('casosVal').textContent = casos;
 
